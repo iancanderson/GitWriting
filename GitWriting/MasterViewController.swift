@@ -13,8 +13,7 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
+    var notes = [Note]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,24 +28,9 @@ class MasterViewController: UITableViewController {
         }
         
         let repoURL = URL(string: "https://github.com/iancanderson/notes-test")!
-        let notes = NotesLoader.init(remoteURL: repoURL).loadNotes()
+        self.notes = NotesLoader.init(remoteURL: repoURL).loadNotes()
         
         dump(notes)
-        
-//        let url = URL.init(string: "https://gist.github.com/iancanderson/d19c7321e30a790b5d9bca729bdaaa90.git")!
-//        let repo = Repository.at(url)
-//        if let repo = repo.value {
-//            let latestCommit: Result<Commit, NSError> = repo
-//                .HEAD()
-//                .flatMap { repo.commit($0.oid) }
-//            if let commit = latestCommit.value {
-//                print("Latest Commit: \(commit.message) by \(commit.author.name)")
-//            } else {
-//                print("Could not get commit: \(latestCommit.error)")
-//            }
-//        } else {
-//            print("Could not open repository: \(repo.error)")
-//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +45,7 @@ class MasterViewController: UITableViewController {
 
     @objc
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
+        notes.insert(Note(name: "New Note"), at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -71,7 +55,7 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = notes[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -87,14 +71,14 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return notes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = notes[indexPath.row]
+        cell.textLabel!.text = object.name
         return cell
     }
 
@@ -105,7 +89,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

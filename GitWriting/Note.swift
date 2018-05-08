@@ -8,6 +8,12 @@
 
 import Foundation
 
-struct Note {
+struct Note: Equatable {
     let name: String
+}
+
+extension Note: Comparable {
+    static func < (lhs: Note, rhs: Note) -> Bool {
+        return lhs.name < rhs.name
+    }
 }

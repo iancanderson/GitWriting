@@ -18,7 +18,8 @@ class NotesLoader {
     }
     
     func loadNotes() -> [Note] {
-        if let repo = getLocalRepo() {
+        
+        if let localURL = buildLocalURL(), let repo = getLocalRepo() {
             print("successfully got local repo")
             switch repo.HEAD() {
             case let .success(ref):
@@ -26,9 +27,16 @@ class NotesLoader {
             case let .failure(error):
                 print("failed to get HEAD ref: \(error)")
             }
+            
+            do {
+                let files = try fileManager.contentsOfDirectory(at: localURL, includingPropertiesForKeys: nil)
+                return files.map { Note(name: $0.lastPathComponent) }.sorted()
+            } catch {
+                print(error)
+            }
         }
         
-        return [Note(name: "hi")]
+        return []
     }
     
     private func getLocalRepo() -> Repository? {
@@ -39,6 +47,7 @@ class NotesLoader {
         
         if(repoIsCloned()) {
             // If we already have cloned a repo with this remote, just load that repo from disk
+            //TODO: pull latest changes from remote?
             print("repo is already cloned")
             switch Repository.at(localURL) {
             case let .success(repo):
