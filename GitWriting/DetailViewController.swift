@@ -15,6 +15,8 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let note = detailItem {
+            self.title = note.name()
+            
             if let textView = noteTextView {
                 if let fileContents = FileManager.default.contents(atPath: note.absolutePath()) {
                     textView.text = String(data: fileContents, encoding: .utf8)
