@@ -10,15 +10,14 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
+    @IBOutlet weak var noteTextView: UITextView!
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let note = detailItem {
-            if let label = detailDescriptionLabel {
+            if let textView = noteTextView {
                 if let fileContents = FileManager.default.contents(atPath: note.absolutePath()) {
-                    label.text = String(data: fileContents, encoding: .utf8)
+                    textView.text = String(data: fileContents, encoding: .utf8)
                 }
             }
         }
