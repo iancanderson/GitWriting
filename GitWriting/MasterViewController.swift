@@ -6,6 +6,8 @@
 //  Copyright © 2018 Ian Anderson. All rights reserved.
 //
 
+import Result
+import SwiftGit2
 import UIKit
 
 class MasterViewController: UITableViewController {
@@ -25,6 +27,26 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        let repoURL = URL(string: "https://github.com/iancanderson/flexbox-tutorial-no-answers")!
+        let notes = NotesLoader.init(remoteURL: repoURL).loadNotes()
+        
+        dump(notes)
+        
+//        let url = URL.init(string: "https://gist.github.com/iancanderson/d19c7321e30a790b5d9bca729bdaaa90.git")!
+//        let repo = Repository.at(url)
+//        if let repo = repo.value {
+//            let latestCommit: Result<Commit, NSError> = repo
+//                .HEAD()
+//                .flatMap { repo.commit($0.oid) }
+//            if let commit = latestCommit.value {
+//                print("Latest Commit: \(commit.message) by \(commit.author.name)")
+//            } else {
+//                print("Could not get commit: \(latestCommit.error)")
+//            }
+//        } else {
+//            print("Could not open repository: \(repo.error)")
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

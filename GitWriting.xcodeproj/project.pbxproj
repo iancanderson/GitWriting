@@ -13,6 +13,10 @@
 		2AF9C10120A0C7F9008BA303 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF9C0FF20A0C7F9008BA303 /* Main.storyboard */; };
 		2AF9C10320A0C7FB008BA303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF9C10220A0C7FB008BA303 /* Assets.xcassets */; };
 		2AF9C10620A0C7FB008BA303 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF9C10420A0C7FB008BA303 /* LaunchScreen.storyboard */; };
+		2AF9C11020A0D11C008BA303 /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF9C10F20A0D11C008BA303 /* SwiftGit2.framework */; };
+		2AF9C11220A0D231008BA303 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF9C11120A0D231008BA303 /* Result.framework */; };
+		2AF9C11420A0D51E008BA303 /* NotesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11320A0D51E008BA303 /* NotesLoader.swift */; };
+		2AF9C11620A0D90D008BA303 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11520A0D90D008BA303 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		2AF9C10220A0C7FB008BA303 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AF9C10520A0C7FB008BA303 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AF9C10720A0C7FB008BA303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AF9C10F20A0D11C008BA303 /* SwiftGit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGit2.framework; path = Carthage/Build/iOS/SwiftGit2.framework; sourceTree = "<group>"; };
+		2AF9C11120A0D231008BA303 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		2AF9C11320A0D51E008BA303 /* NotesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesLoader.swift; sourceTree = "<group>"; };
+		2AF9C11520A0D90D008BA303 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF9C11220A0D231008BA303 /* Result.framework in Frameworks */,
+				2AF9C11020A0D11C008BA303 /* SwiftGit2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +52,7 @@
 			children = (
 				2AF9C0F820A0C7F9008BA303 /* GitWriting */,
 				2AF9C0F720A0C7F9008BA303 /* Products */,
+				2AF9C10E20A0D11C008BA303 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +74,19 @@
 				2AF9C10220A0C7FB008BA303 /* Assets.xcassets */,
 				2AF9C10420A0C7FB008BA303 /* LaunchScreen.storyboard */,
 				2AF9C10720A0C7FB008BA303 /* Info.plist */,
+				2AF9C11320A0D51E008BA303 /* NotesLoader.swift */,
+				2AF9C11520A0D90D008BA303 /* Note.swift */,
 			);
 			path = GitWriting;
+			sourceTree = "<group>";
+		};
+		2AF9C10E20A0D11C008BA303 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AF9C11120A0D231008BA303 /* Result.framework */,
+				2AF9C10F20A0D11C008BA303 /* SwiftGit2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +99,7 @@
 				2AF9C0F220A0C7F9008BA303 /* Sources */,
 				2AF9C0F320A0C7F9008BA303 /* Frameworks */,
 				2AF9C0F420A0C7F9008BA303 /* Resources */,
+				2AF9C10D20A0D00E008BA303 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -133,11 +156,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2AF9C10D20A0D00E008BA303 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftGit2.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGit2.framework",
+				"$(DERIVED_FILE_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2AF9C0F220A0C7F9008BA303 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF9C11620A0D90D008BA303 /* Note.swift in Sources */,
+				2AF9C11420A0D51E008BA303 /* NotesLoader.swift in Sources */,
 				2AF9C0FE20A0C7F9008BA303 /* DetailViewController.swift in Sources */,
 				2AF9C0FC20A0C7F9008BA303 /* MasterViewController.swift in Sources */,
 				2AF9C0FA20A0C7F9008BA303 /* AppDelegate.swift in Sources */,
@@ -285,6 +330,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GitWriting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +351,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GitWriting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
