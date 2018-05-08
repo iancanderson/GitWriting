@@ -18,7 +18,6 @@ class NotesLoader {
     }
     
     func loadNotes() -> [Note] {
-        
         if let localURL = buildLocalURL(), let repo = getLocalRepo() {
             print("successfully got local repo")
             switch repo.HEAD() {
@@ -29,7 +28,7 @@ class NotesLoader {
             }
             
             do {
-                let files = try fileManager.contentsOfDirectory(at: localURL, includingPropertiesForKeys: nil)
+                let files = try fileManager.contentsOfDirectory(at: localURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
                 return files.map { Note(name: $0.lastPathComponent) }.sorted()
             } catch {
                 print(error)
