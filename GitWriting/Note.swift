@@ -9,11 +9,19 @@
 import Foundation
 
 struct Note: Equatable {
-    let name: String
+    let localURL: URL
+    
+    func name() -> String {
+        return localURL.lastPathComponent
+    }
+    
+    func absolutePath() -> String {
+        return localURL.path
+    }
 }
 
 extension Note: Comparable {
     static func < (lhs: Note, rhs: Note) -> Bool {
-        return lhs.name < rhs.name
+        return lhs.absolutePath() < rhs.absolutePath()
     }
 }

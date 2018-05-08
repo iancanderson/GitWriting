@@ -45,7 +45,8 @@ class MasterViewController: UITableViewController {
 
     @objc
     func insertNewObject(_ sender: Any) {
-        notes.insert(Note(name: "New Note"), at: 0)
+        //TODO - create note with URL
+//        notes.insert(Note(name: "New Note"), at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -78,7 +79,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         let object = notes[indexPath.row]
-        cell.textLabel!.text = object.name
+        cell.textLabel!.text = object.name()
         return cell
     }
 

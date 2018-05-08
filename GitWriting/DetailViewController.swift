@@ -15,9 +15,11 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
+        if let note = detailItem {
             if let label = detailDescriptionLabel {
-                label.text = detail.name
+                if let fileContents = FileManager.default.contents(atPath: note.absolutePath()) {
+                    label.text = String(data: fileContents, encoding: .utf8)
+                }
             }
         }
     }

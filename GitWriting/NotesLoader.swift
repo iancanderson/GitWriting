@@ -29,7 +29,7 @@ class NotesLoader {
             
             do {
                 let files = try fileManager.contentsOfDirectory(at: localURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                return files.map { Note(name: $0.lastPathComponent) }.sorted()
+                return files.map { Note(localURL: $0) }.sorted()
             } catch {
                 print(error)
             }
