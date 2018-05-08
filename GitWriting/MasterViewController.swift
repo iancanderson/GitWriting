@@ -28,7 +28,7 @@ class MasterViewController: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        let repoURL = URL(string: "https://github.com/iancanderson/flexbox-tutorial-no-answers")!
+        let repoURL = URL(string: "https://github.com/iancanderson/notes-test")!
         let notes = NotesLoader.init(remoteURL: repoURL).loadNotes()
         
         dump(notes)

@@ -18,33 +18,58 @@ class NotesLoader {
     }
     
     func loadNotes() -> [Note] {
-        if(repoIsCloned()) {
-            // If we already have cloned a repo with this remote, just load that repo from disk
-            print("repo is already cloned")
-        } else {
-            // Else, clone the repo from the remote url
-            if let localURL = localURL() {
-                do {
-                    try fileManager.createDirectory(at: localURL, withIntermediateDirectories: true, attributes: nil)
-
-                } catch {
-                    print(error)
-                }
-                
-                switch Repository.clone(from: remoteURL, to: localURL) {
-                case let .success(repo):
-                    print(repo)
-                case let .failure(error):
-                    print(error)
-                }
+        if let repo = getLocalRepo() {
+            print("successfully got local repo")
+            switch repo.HEAD() {
+            case let .success(ref):
+                print("HEAD at \(ref)")
+            case let .failure(error):
+                print("failed to get HEAD ref: \(error)")
             }
         }
         
         return [Note(name: "hi")]
     }
     
+    private func getLocalRepo() -> Repository? {
+        guard let localURL = buildLocalURL() else {
+            print("failed to build local URL")
+            return nil
+        }
+        
+        if(repoIsCloned()) {
+            // If we already have cloned a repo with this remote, just load that repo from disk
+            print("repo is already cloned")
+            switch Repository.at(localURL) {
+            case let .success(repo):
+                print(repo)
+                return repo
+            case let .failure(error):
+                print(error)
+            }
+        } else {
+            // Else, clone the repo from the remote url
+            do {
+                try fileManager.createDirectory(at: localURL, withIntermediateDirectories: true, attributes: nil)
+                
+            } catch {
+                print(error)
+            }
+            
+            switch Repository.clone(from: remoteURL, to: localURL) {
+            case let .success(repo):
+                print(repo)
+                return repo
+            case let .failure(error):
+                print(error)
+            }
+        }
+        
+        return nil
+    }
+    
     private func repoIsCloned() -> Bool {
-        if let clonePath = localURL()?.path {
+        if let clonePath = buildLocalURL()?.path {
             return fileManager.fileExists(atPath: clonePath)
         } else {
             return false;
@@ -52,7 +77,7 @@ class NotesLoader {
     }
     
     // For https://github.com/iancanderson/notes-test, returns file:///:documents_directory/github.com/iancanderson/notes-test
-    private func localURL() -> URL? {
+    private func buildLocalURL() -> URL? {
         do {
             let documentDirectoryURL = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             
