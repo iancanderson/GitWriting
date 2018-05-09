@@ -32,6 +32,7 @@ class MasterViewController: UITableViewController {
         self.repo = RepoLoader.init(remoteURL: repoURL).loadRepo()
         
         if let repo = repo {
+            self.title = repo.shortName()
             self.notes = NotesLoader.init(repo: repo).loadNotes()
         }
         
