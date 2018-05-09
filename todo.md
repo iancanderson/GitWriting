@@ -7,7 +7,7 @@ Definitely
 - [x] Create new empty note with filename: `YYYY-MM-DD-:name`
 - [x] Delete note file
 - [x] Edit note's contents, update corresponding file contents
-- [ ] Save file with .md extension
+- [x] Save file with .md extension
 - [ ] Auto-committing to `git-writing-auto-commit` branch:
   - [ ] new note
   - [ ] delete note

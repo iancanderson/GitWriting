@@ -37,6 +37,10 @@ class NoteCreator {
     }
     
     private func localURL() -> URL? {
-        return repo.directoryURL?.appendingPathComponent(name)
+        return repo.directoryURL?.appendingPathComponent(nameWithExtension())
+    }
+    
+    private func nameWithExtension() -> String {
+        return "\(name).md"
     }
 }
