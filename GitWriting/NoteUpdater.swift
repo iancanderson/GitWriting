@@ -61,9 +61,7 @@ class NoteUpdater : NSObject, UITextViewDelegate {
 
         // Add all files and commit
         let repo = note.repo
-        let commitResult = repo.add(path: ".").flatMap {
-            repo.commit(message: "auto saving notes", signature: .init(name: "my name", email: "my email"))
-        }
+        let commitResult = repo.addAllAndCommit(message: "auto saving notes")
         switch commitResult {
         case let .success(commit):
             print("autosaved commit \(commit)")

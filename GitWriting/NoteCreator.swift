@@ -33,6 +33,9 @@ class NoteCreator {
         let emptyContents = "".data(using: .utf8)
         fileManager.createFile(atPath: url.path, contents: emptyContents)
         
+        // Add file to git index
+        repo.addAll()
+        
         return .success(Note(localURL: url, repo: repo))
     }
     

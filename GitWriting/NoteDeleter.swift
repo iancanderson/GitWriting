@@ -28,6 +28,14 @@ class NoteDeleter {
           return .failure(.deleteFailed(note: note))
         }
         
+        // Immediately commit after deleting succeeds
+        switch note.repo.addAllAndCommit(message: "Deleted \(note.name())") {
+        case .success:
+            print("commited deleted note: \(note.name())")
+        case let .failure(error):
+            print(error)
+        }
+        
         return .success(note)
     }
 }

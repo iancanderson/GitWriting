@@ -11,10 +11,10 @@ Definitely
 - [x] Open note automatically after creating it
 - [ ] Auto-commit to master
   - [ ] On startup, git pull origin master
-  - [ ] Auto-commit when:
-    - [ ] new note
-    - [ ] delete note
+  - [x] Auto-commit when:
+    - [x] delete note
     - [x] editing note (every n seconds?)
+    - [x] new note (commits as soon as you actually add note contents)
 - [ ] Auto-push to master
 - [ ] "Save changes"
   - Squash 
