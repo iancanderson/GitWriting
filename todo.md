@@ -8,6 +8,7 @@ Definitely
 - [x] Delete note file
 - [x] Edit note's contents, update corresponding file contents
 - [x] Save file with .md extension
+- [x] Open note automatically after creating it
 - [ ] Auto-committing to `git-writing-auto-commit` branch:
   - [ ] new note
   - [ ] delete note

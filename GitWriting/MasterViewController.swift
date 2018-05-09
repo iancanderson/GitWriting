@@ -61,6 +61,10 @@ class MasterViewController: UITableViewController {
                     self.notes.insert(note, at: 0)
                     let indexPath = IndexPath(row: 0, section: 0)
                     self.tableView.insertRows(at: [indexPath], with: .automatic)
+                    
+                    // Select row so it will be passed to detail controller during segue
+                    self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                    self.performSegue(withIdentifier: "showDetail", sender: self)
                 case let .failure(error):
                     self.showError(error)
                 }
