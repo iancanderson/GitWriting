@@ -1,5 +1,5 @@
 //
-//  NoteSaver.swift
+//  NoteUpdater.swift
 //  GitWriting
 //
 //  Created by Ian Anderson on 5/9/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NoteSaver : NSObject, UITextViewDelegate {
+class NoteUpdater : NSObject, UITextViewDelegate {
     let note: Note
     var contents: String = ""
     
