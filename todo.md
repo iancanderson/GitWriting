@@ -5,7 +5,7 @@ Definitely
 - [x] Put note filename in title bar
 - [x] Put repo name in title bar
 - [x] Create new empty note with filename: `YYYY-MM-DD-:name`
-- [ ] Delete note file
+- [x] Delete note file
 - [ ] Edit note's contents
 - [ ] Auto-committing to `git-writing-auto-commit` branch:
   - [ ] new note
