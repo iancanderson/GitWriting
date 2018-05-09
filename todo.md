@@ -9,14 +9,20 @@ Definitely
 - [x] Edit note's contents, update corresponding file contents
 - [x] Save file with .md extension
 - [x] Open note automatically after creating it
-- [ ] Auto-committing to `git-writing-auto-commit` branch:
-  - [ ] new note
-  - [ ] delete note
-  - [ ] edit note
+- [ ] Auto-commit to master
+  - [ ] On startup, git pull origin master
+  - [ ] Auto-commit when:
+    - [ ] new note
+    - [ ] delete note
+    - [x] editing note (every n seconds?)
+- [ ] Auto-push to master
 - [ ] "Save changes"
   - Squash 
 - [ ] "Save changes"
 
 Maybe
+- [ ] Commit to an autosave branch instead of master
 - [ ] markdown preview
+- [ ] Show diff against master before "saving"
+- [ ] Pin important notes to the top
 - [ ] Exclude directories from file listing?

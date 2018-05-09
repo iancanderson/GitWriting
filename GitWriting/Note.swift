@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import SwiftGit2
 
-struct Note: Equatable {
+struct Note {
     let localURL: URL
+    let repo: Repository
     
     func name() -> String {
         return localURL.lastPathComponent
@@ -23,5 +25,11 @@ struct Note: Equatable {
 extension Note: Comparable {
     static func < (lhs: Note, rhs: Note) -> Bool {
         return lhs.absolutePath() < rhs.absolutePath()
+    }
+}
+
+extension Note: Equatable {
+    static func == (lhs: Note, rhs: Note) -> Bool {
+        return lhs.localURL == rhs.localURL
     }
 }

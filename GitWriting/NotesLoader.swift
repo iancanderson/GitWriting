@@ -21,7 +21,7 @@ class NotesLoader {
         if let localURL = repo.directoryURL {
             do {
                 let files = try fileManager.contentsOfDirectory(at: localURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                return files.map { Note(localURL: $0) }.sorted()
+                return files.map { Note(localURL: $0, repo: repo) }.sorted()
             } catch {
                 print(error)
             }

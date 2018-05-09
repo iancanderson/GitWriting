@@ -11,19 +11,19 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var noteTextView: UITextView!
-    var noteSaver: NoteUpdater!
+    var noteUpdater: NoteUpdater!
     
     func configureView() {
         // Update the user interface for the detail item.
         if let note = detailItem {
             self.title = note.name()
-            self.noteSaver = NoteUpdater.init(note)
+            self.noteUpdater = NoteUpdater.init(note)
             
             if let textView = noteTextView {
                 if let fileContents = FileManager.default.contents(atPath: note.absolutePath()) {
                     textView.text = String(data: fileContents, encoding: .utf8)
                     textView.isEditable = true
-                    textView.delegate = noteSaver
+                    textView.delegate = noteUpdater
                 }
             }
         }

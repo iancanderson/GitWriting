@@ -33,7 +33,7 @@ class NoteCreator {
         let emptyContents = "".data(using: .utf8)
         fileManager.createFile(atPath: url.path, contents: emptyContents)
         
-        return .success(Note(localURL: url))
+        return .success(Note(localURL: url, repo: repo))
     }
     
     private func localURL() -> URL? {
