@@ -19,6 +19,9 @@
 		2AF9C11620A0D90D008BA303 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11520A0D90D008BA303 /* Note.swift */; };
 		2AF9C11820A243A4008BA303 /* RepoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11720A243A4008BA303 /* RepoLoader.swift */; };
 		2AF9C11B20A30EDE008BA303 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11A20A30EDE008BA303 /* Repository.swift */; };
+		2AF9C11D20A3136B008BA303 /* NoteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11C20A3136B008BA303 /* NoteCreator.swift */; };
+		2AF9C11F20A31C96008BA303 /* NewNoteDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C11E20A31C96008BA303 /* NewNoteDialog.swift */; };
+		2AF9C12120A3245C008BA303 /* NoteCreationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9C12020A3245C008BA303 /* NoteCreationError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		2AF9C11520A0D90D008BA303 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		2AF9C11720A243A4008BA303 /* RepoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoLoader.swift; sourceTree = "<group>"; };
 		2AF9C11A20A30EDE008BA303 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		2AF9C11C20A3136B008BA303 /* NoteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCreator.swift; sourceTree = "<group>"; };
+		2AF9C11E20A31C96008BA303 /* NewNoteDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteDialog.swift; sourceTree = "<group>"; };
+		2AF9C12020A3245C008BA303 /* NoteCreationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCreationError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,8 @@
 			children = (
 				2AF9C0F920A0C7F9008BA303 /* AppDelegate.swift */,
 				2AF9C0FB20A0C7F9008BA303 /* MasterViewController.swift */,
+				2AF9C11C20A3136B008BA303 /* NoteCreator.swift */,
+				2AF9C12020A3245C008BA303 /* NoteCreationError.swift */,
 				2AF9C11920A30ECA008BA303 /* Extensions */,
 				2AF9C0FD20A0C7F9008BA303 /* DetailViewController.swift */,
 				2AF9C0FF20A0C7F9008BA303 /* Main.storyboard */,
@@ -82,6 +90,7 @@
 				2AF9C11320A0D51E008BA303 /* NotesLoader.swift */,
 				2AF9C11520A0D90D008BA303 /* Note.swift */,
 				2AF9C11720A243A4008BA303 /* RepoLoader.swift */,
+				2AF9C11E20A31C96008BA303 /* NewNoteDialog.swift */,
 			);
 			path = GitWriting;
 			sourceTree = "<group>";
@@ -197,7 +206,10 @@
 			files = (
 				2AF9C11B20A30EDE008BA303 /* Repository.swift in Sources */,
 				2AF9C11820A243A4008BA303 /* RepoLoader.swift in Sources */,
+				2AF9C11F20A31C96008BA303 /* NewNoteDialog.swift in Sources */,
+				2AF9C11D20A3136B008BA303 /* NoteCreator.swift in Sources */,
 				2AF9C11620A0D90D008BA303 /* Note.swift in Sources */,
+				2AF9C12120A3245C008BA303 /* NoteCreationError.swift in Sources */,
 				2AF9C11420A0D51E008BA303 /* NotesLoader.swift in Sources */,
 				2AF9C0FE20A0C7F9008BA303 /* DetailViewController.swift in Sources */,
 				2AF9C0FC20A0C7F9008BA303 /* MasterViewController.swift in Sources */,

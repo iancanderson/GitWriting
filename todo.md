@@ -4,6 +4,16 @@ Definitely
 - [x] Render text contents in UITextView instead of UILabel
 - [x] Put note filename in title bar
 - [x] Put repo name in title bar
+- [x] Create new empty note with filename: `YYYY-MM-DD-:name`
+- [ ] Delete note file
+- [ ] Edit note's contents
+- [ ] Auto-committing to `git-writing-auto-commit` branch:
+  - [ ] new note
+  - [ ] delete note
+  - [ ] edit note
+- [ ] "Save changes"
+  - Squash 
+- [ ] "Save changes"
 
 Maybe
 - [ ] markdown preview

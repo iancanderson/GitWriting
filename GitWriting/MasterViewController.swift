@@ -21,7 +21,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newNote(_:)))
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -50,11 +50,30 @@ class MasterViewController: UITableViewController {
     }
 
     @objc
-    func insertNewObject(_ sender: Any) {
-        //TODO - create note with URL
-//        notes.insert(Note(name: "New Note"), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+    func newNote(_ sender: Any) {
+        if let repo = repo {
+            let dialog = NewNoteDialog.init(createHandler: { (name: String?) in
+                //TODO: how to handle empty note name?
+                let name = name ?? "new-note"
+                
+                switch NoteCreator.init(name: name, repo: repo).create() {
+                case let .success(note):
+                    self.notes.insert(note, at: 0)
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.tableView.insertRows(at: [indexPath], with: .automatic)
+                case let .failure(error):
+                    self.showError(error)
+                }
+            })
+            
+            dialog.present(controller: self)
+        }
+    }
+    
+    func showError(_ error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 
     // MARK: - Segues
