@@ -14,6 +14,7 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var notes = [Note]()
+    var repo : Repository? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,11 @@ class MasterViewController: UITableViewController {
         }
         
         let repoURL = URL(string: "https://github.com/iancanderson/notes-test")!
-        self.notes = NotesLoader.init(remoteURL: repoURL).loadNotes()
+        self.repo = RepoLoader.init(remoteURL: repoURL).loadRepo()
+        
+        if let repo = repo {
+            self.notes = NotesLoader.init(repo: repo).loadNotes()
+        }
         
         dump(notes)
     }
