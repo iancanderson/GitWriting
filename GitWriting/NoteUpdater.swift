@@ -9,24 +9,17 @@
 import Foundation
 import UIKit
 
-let secondsBetweenAutoSaveCommits: TimeInterval = 10
+// When updating a note, auto-commit after this many seconds
+let secondsAfterChangeToCommit: TimeInterval = 10
 
 class NoteUpdater : NSObject, UITextViewDelegate {
     let note: Note
     var contents: String = ""
-    var lastCommittedChanges: Date? = nil
-    var commitTimer: Timer? = nil
+    var commitTimers = [Timer]()
     
     init(_ note: Note) {
         self.note = note
         super.init()
-        
-        self.commitTimer = Timer.scheduledTimer(timeInterval: secondsBetweenAutoSaveCommits, target: self, selector: #selector(NoteUpdater.commitChanges), userInfo: nil, repeats: true)
-        commitTimer?.tolerance = 1 // okay if the timer executes up to 1 second later than scheduled
-    }
-    
-    deinit {
-        commitTimer?.invalidate()
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -35,6 +28,10 @@ class NoteUpdater : NSObject, UITextViewDelegate {
             if (newContents != oldContents) {
                 self.contents = newContents
                 updateFileContents()
+                
+                let commitTimer = Timer.scheduledTimer(timeInterval: secondsAfterChangeToCommit, target: self, selector: #selector(NoteUpdater.autoCommit), userInfo: nil, repeats: false)
+                commitTimer.tolerance = 1 // okay if the timer executes up to 1 second later than scheduled
+                commitTimers.append(commitTimer)
             }
         }
     }
@@ -49,7 +46,12 @@ class NoteUpdater : NSObject, UITextViewDelegate {
     }
     
     @objc
-    private func commitChanges() {
+    private func autoCommit() {
+        // First, invalidate all commit timers, since we're committing all changes now
+        // This is so we don't try to commit 9 times when typing 9 characters
+        commitTimers.forEach { timer in timer.invalidate() }
+        commitTimers.removeAll()
+        
         // If there are changes, commit them
         // Else, do nothing
         guard hasUncommittedChanges() else {
