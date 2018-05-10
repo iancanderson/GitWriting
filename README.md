@@ -18,9 +18,9 @@ Features
     - [x] new note (commits as soon as you actually add note contents)
 - [x] Store github token in Keychain
 - [x] Get push working without having to manually edit .git/config (See Hacks below)
+- [x] Auto-push to master
 
 TODO:
-- [ ] Auto-push to master
 - [ ] Use credentials to clone private repo
 - [ ] On startup, git pull origin master
 
