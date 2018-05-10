@@ -6,6 +6,7 @@
 //  Copyright © 2018 Ian Anderson. All rights reserved.
 //
 
+import KeychainAccess
 import Result
 import SwiftGit2
 import UIKit
@@ -27,6 +28,9 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        // TODO - ask user for credentials and set them here
+//        GitHubCredentials.set(username: "iancanderson", password: "foobar")
         
         let repoURL = URL(string: "https://github.com/iancanderson/notes-test")!
         self.repo = RepoLoader.init(remoteURL: repoURL).loadRepo()

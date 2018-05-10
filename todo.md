@@ -9,16 +9,16 @@ Definitely
 - [x] Edit note's contents, update corresponding file contents
 - [x] Save file with .md extension
 - [x] Open note automatically after creating it
-- [ ] Auto-commit to master
-  - [ ] On startup, git pull origin master
+- [x] Auto-commit to master
   - [x] Auto-commit when:
     - [x] delete note
     - [x] editing note (every n seconds?)
     - [x] new note (commits as soon as you actually add note contents)
+- [ ] Store github token in Keychain
+- [ ] Get push working without having to manually edit .git/config
 - [ ] Auto-push to master
-- [ ] "Save changes"
-  - Squash 
-- [ ] "Save changes"
+- [ ] Use credentials to clone private repo
+- [ ] On startup, git pull origin master
 
 Maybe
 - [ ] Commit to an autosave branch instead of master

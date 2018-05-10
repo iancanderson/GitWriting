@@ -27,4 +27,29 @@ extension Repository {
     func addAll() -> Result<(), NSError> {
         return add(path: ".")
     }
+    
+    func pushToOrigin() {
+        guard let localBranch = HEAD().value as? Branch else {
+            print("Can't push - not on a branch")
+            return
+        }
+        guard let remoteBranch = remoteBranch(named: "origin/master").value else {
+            print("Can't push - no remote branch with name origin/master")
+            return
+        }
+        guard let credentials = GitHubCredentials.get() else {
+            return
+        }
+        
+        let pushResult = remote(named: "origin").flatMap {
+            push(remote: $0, branch: localBranch, credentials: credentials)
+        }
+        
+        switch pushResult {
+        case .success:
+            print("Push to origin succeeded")
+        case let .failure(error):
+            print("Push failed: \(error)")
+        }
+    }
 }

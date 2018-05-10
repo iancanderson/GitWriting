@@ -65,6 +65,7 @@ class NoteUpdater : NSObject, UITextViewDelegate {
         switch commitResult {
         case let .success(commit):
             print("autosaved commit \(commit)")
+            repo.pushToOrigin()
         case let .failure(error):
             print("failed to autosave: \(error)")
         }
