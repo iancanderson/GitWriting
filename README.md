@@ -17,9 +17,9 @@ Features
     - [x] editing note (every n seconds?)
     - [x] new note (commits as soon as you actually add note contents)
 - [x] Store github token in Keychain
+- [x] Get push working without having to manually edit .git/config (See Hacks below)
 
 TODO:
-- [ ] Get push working without having to manually edit .git/config (See Hacks below)
 - [ ] Auto-push to master
 - [ ] Use credentials to clone private repo
 - [ ] On startup, git pull origin master
@@ -30,15 +30,3 @@ Maybe
 - [ ] Show diff against master before "saving"
 - [ ] Pin important notes to the top
 - [ ] Exclude directories from file listing?
-
-
-## Hacks
-
-To enable git-pushing, I needed to add the push line to the repo's .git/config file:
-
-```
-[remote "origin"]
-	url = https://github.com/iancanderson/notes-test
-	fetch = +refs/heads/*:refs/remotes/origin/*
-	push = refs/heads/master:refs/heads/master
-```
